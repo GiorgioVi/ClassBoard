@@ -35,7 +35,7 @@
       Edit question
     </h2>
 
-    <form action="/modify_question/<%= @the_question.id %>"  method="post" >
+    <form action="/modify_question/<%= @the_question.id %>"  method="post" enctype="multipart/form-data" >
       <div>
         <label for="description_box">
           Description
@@ -53,10 +53,9 @@
 
       <div>
         <label for="user_id_box">
-          User
         </label>
 
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_question.user_id %>">
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @the_question.user_id %>">
       </div>
 
       <div>
@@ -69,10 +68,9 @@
 
       <div>
         <label for="course_id_box">
-          Course
         </label>
 
-        <input type="text" id="course_id_box" name="query_course_id" value="<%= @the_question.course_id %>">
+        <input type="hidden" id="course_id_box" name="query_course_id" value="<%= @the_question.course_id %>">
       </div>
 
       <button>
@@ -150,7 +148,7 @@
 
 <tr>
 <th>
-Rating
+Up Votes
 </th>
 <th>
 Description
@@ -166,7 +164,7 @@ Posted By:
 </th>
 
 <th>
-Up/Down Vote
+Up Vote
 </th>
 
 </tr>
@@ -174,7 +172,10 @@ Up/Down Vote
 <%Solution.where(:question_id => @the_question.id).order({:created_at => :desc }).each do |a_solution|%>
         <tr>
         <th>
-        In progress
+
+        <%= Rating.where(:solution_id => a_solution.id).length%>
+
+
         </th>
         <th>
           <%=a_solution.description%>
@@ -196,9 +197,26 @@ Up/Down Vote
 
         <th>
 
-        <button> UpVote</button>
-        <button> DownVote</button>
+        <% if Rating.where(:solution_id => a_solution).first != nil and Rating.where(:solution_id => a_solution).where(:user_id => @current_user.id).first != nil%>
+
+            Already Voted!
+
+        <% else %>
+
+        <form action="/insert_rating" method="post">
+        <input type="hidden" name = "query_solution_id" value ="<%=a_solution.id%>">
+        <input type="hidden" name = "query_vote_count" value ="1">
+        <input type="hidden" name = "query_user_id" value ="<%= @current_user.id%>">
+        <input type="hidden" name = "query_solution_poster_id" value ="<%=a_solution.user_id%>">
+
+        <button>UpVote</button>
+        </form>
+        
+
+        <%end%>
         </th>
+
+
 
       </tr>
       <%end%>

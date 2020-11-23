@@ -21,10 +21,12 @@ class RatingsController < ApplicationController
     the_rating = Rating.new
     the_rating.solution_id = params.fetch("query_solution_id")
     the_rating.vote_count = params.fetch("query_vote_count")
+    the_rating.user_id = params.fetch("query_user_id")
+    the_rating.solution_poster_id = params.fetch("query_solution_poster_id") 
 
     if the_rating.valid?
       the_rating.save
-      redirect_to("/ratings", { :notice => "Rating created successfully." })
+      redirect_to("/home_page", { :notice => "Thanks for voting. Search for new questions!" })
     else
       redirect_to("/ratings", { :notice => "Rating failed to create successfully." })
     end
@@ -36,6 +38,8 @@ class RatingsController < ApplicationController
 
     the_rating.solution_id = params.fetch("query_solution_id")
     the_rating.vote_count = params.fetch("query_vote_count")
+    the_rating.user_id = params.fetch("query_user_id")
+    the_rating.solution_poster_id = params.fetch("query_solution_poster_id")
 
     if the_rating.valid?
       the_rating.save
