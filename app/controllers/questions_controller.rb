@@ -27,9 +27,9 @@ class QuestionsController < ApplicationController
 
     if the_question.valid?
       the_question.save
-      redirect_to("/questions", { :notice => "Question created successfully." })
+      redirect_to("/questions/"+the_question.id.to_s, { :notice => "Question created successfully." })
     else
-      redirect_to("/questions", { :notice => "Question failed to create successfully." })
+      redirect_to("/home_page", { :notice => "Question failed to create successfully." })
     end
   end
 

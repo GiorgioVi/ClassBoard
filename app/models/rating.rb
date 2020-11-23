@@ -9,4 +9,6 @@
 #  solution_id :integer
 #
 class Rating < ApplicationRecord
+  belongs_to(:solution)
+
 end

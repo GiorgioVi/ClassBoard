@@ -12,6 +12,9 @@
 #  user_id     :integer
 #
 class Question < ApplicationRecord
-
   belongs_to(:course)
+
+  has_many(:solution)
+  
+   mount_uploader :image_file, ImageFileUploader
 end

@@ -19,7 +19,7 @@
 <hr>
 <h4> Upload a Question </h4>
 
-<form action="/insert_question" method="post">
+<form action="/insert_question" method="post" enctype="multipart/form-data" >
       <div>
         <label for="question_description_box">
           Description
@@ -30,10 +30,10 @@
 
       <div>
         <label for="question_image_box">
-          Image
+         Input Image
         </label>
 
-        <input type="text" id="question_image_box" name="query_image_link">
+        <input type="hidden" id="question_image_box" name="query_image_link" value="BlankForNow" >
 
 
         <label for="course_id_box"> 
@@ -43,7 +43,7 @@
         <input type="hidden" id="user_id_box" name="query_user_id" value="<%=@current_user.id%>">
 
         <label for="user_image_file_box"> 
-        <input type="hidden" id="user_image_file_box" name="query_image_file" value="BlankForNow">
+        <input type="file" id="user_image_file_box" name="query_image_file">
 
       </div>
 <br>
@@ -56,9 +56,9 @@
 
   <div>
   <p> Previously Asked Questions </p>
-    <table border="1">
+    <table border="1" style="width:90%">
       <tr>
-        <th>
+        <th style="width:20%" >
           Description
         </th>
 
@@ -74,7 +74,32 @@
           Show Solution
         </th>
       </tr>
-    </table>
+
+    <%Question.where(:course_id => @the_course.id).order({:created_at => :desc }).each do |a_question|%>
+        <tr>
+
+        <th>
+          <%=a_question.description%>
+        </th>
+
+        <th>
+        <img style="max-width: 500px; max-height: 900px" src="<%=a_question.image_file%>" class="img-responsive">
+        </th>
+
+        <th>
+          <%=time_ago_in_words(a_question.created_at)%>
+
+        </th>
+
+        <th>
+         <a href="/questions/<%=a_question.id%>"> Click for solutions </a>
+        </th>
+
+      </tr>
+      <%end%>
+
+      </table>
+
   </div>
 
 

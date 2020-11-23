@@ -21,8 +21,6 @@
     <%#sign in, sign up%>
     </ul>
     <%else%>
-
-        
     <p style="color: green"> 
       <%= notice%>
     </p>
@@ -38,31 +36,35 @@
 
     <li> <a href="/user_sign_out"> Sign out </a>
     </li>
-
     </ul> 
+    <%end%>
+    <h3> Choose a Course </h3>
 
-    <h3> Search Course Questions </h3>
-
-    <form action="/courses/:path_id" method="get">
-      <div>
-        <label for="course_id_box">
-         Course Code: 
-        </label>
-
-        <select name="query_course_id" id="course_id_box">
+    <table border="1">
+        <tr>
+          <th>Course Code</th>
+          <th>Course Name</th>
+          <th>Explore More</th>
+        </tr>
           <% Course.all.order(:course_code).each do |a_course|%>
-            <option value="<%=a_course.id%>">
-            <%=a_course.course_code%>
-            </option>
+          <tr>
+          <th> 
+              <%=a_course.course_code%>
+          </th>
+            
+          <th> 
+                <%=a_course.course_name%>
+          </th>
+
+          <th> 
+              <a href="courses/<%=a_course.id%>"> Explore Course Questions </a>
+          </th>
+          </tr>
           <%end%>
-        </select>
-      </div>
+    </table>
 
-      <button>
-        Search this course
-      </button>
-    </form>
 
+  <% if @current_user != nil %>
 
     <h3> Can't find your course? Upload a new one! </h3>
 
@@ -87,7 +89,11 @@
         Create Course
       </button>
       </form>
+  <% else%>
+    
+  <% end%>
 
-      <%end%>  
+
+      
 
     
