@@ -1,3 +1,12 @@
+  
+    <center>
+      <h1 style="color:black">Class<span style="color:cornflowerblue">Board</span> </h1>
+    </center>
+    <DIV STYLE="background-color:cornflowerblue; height:10px; width:100%;">
+    <br>
+  
+  
+  
   <ul>
     <% if @current_user == nil %>
 
@@ -10,6 +19,7 @@
     <li> <a href="/user_sign_up"> Sign Up </a>
     </li>
     <%#sign in, sign up%>
+    </ul>
     <%else%>
 
         
@@ -19,17 +29,65 @@
 
     <li> <a href="/edit_user_profile"> Edit <%=@current_user.pseudo_name%> </a>
     </li>
+
+    <li> <a href="/questions"> View <%=@current_user.pseudo_name%> Questions </a>
+    </li>
+
+    <li> <a href="/solutions"> View <%=@current_user.pseudo_name%> Solutions </a>
+    </li>
+
     <li> <a href="/user_sign_out"> Sign out </a>
     </li>
 
-    
-        <%end%>  
-  </ul> 
-    
-    
-    
-    
+    </ul> 
+
+    <h3> Search Course Questions </h3>
+
+    <form action="/search_course" method="post">
+      <div>
+        <label for="movie_id_box">
+         Course Code: 
+        </label>
+
+        <select name="query_course_id" id="course_id_box">
+          <% Course.all.order(:course_code).each do |a_course|%>
+            <option value="<%=a_course.id%>">
+            <%=a_course.course_code%>
+            </option>
+          <%end%>
+        </select>
+      </div>
+
+      <button>
+        Search this course
+      </button>
+    </form>
 
 
-This is a test 
+    <h3> Can't find your course? Upload a new one! </h3>
 
+    <form action="/insert_course" method="post">
+      <div>
+        <label for="course_name_box">
+          Course Name
+        </label>
+
+        <input type="text" id="course_name_box" name="query_course_name">
+      </div>
+
+      <div>
+        <label for="course_id_box">
+          Course Code
+        </label>
+
+        <input type="text" id="course_id_box" name="query_course_code">
+      </div>
+
+      <button>
+        Create Course
+      </button>
+      </form>
+      
+      <%end%>  
+
+    

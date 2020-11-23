@@ -3,7 +3,16 @@
       <%= notice%>
     </p>
 
-<h1>Sign up</h1>
+    <center>
+      <h1 style="color:black">Class<span style="color:cornflowerblue">Board</span> </h1>
+    </center>
+    <DIV STYLE="background-color:cornflowerblue; height:10px; width:100%;">
+    <br>
+    
+<center> ClassBoard is where you come for academic support! Have a question in a class, upload it and wait for solutions. Have a solution to a problem? Provide an answer to a question. If you don't see your class code, go ahead and upload your class code and begin posting your questions.</center>
+
+<center>
+<h1 style="color:cornflowerblue">Sign Up</h1>
 
 <form action="/insert_user" method="post">
 
@@ -13,9 +22,9 @@
   </div>
                  
   <div>
-    <label for="pseudo_name_box">Pseudo name</label>
+    <label for="pseudo_name_box">Pseudo Name</label>
       
-    <input type="text" id="pseudo_name_box" name="query_pseudo_name">
+    <input type="text" id="pseudo_name_box" name="query_pseudo_name" placeholder="Choose a Pseudo Name">
   </div>
     
   <div>
@@ -33,8 +42,12 @@
   </button>
 </form>
 
-<hr>
+<br>
+
+<DIV STYLE="background-color:cornflowerblue; height:10px; width:100%;">
+
+<br><br>
 
 <p>
-  Or, <a href="/user_sign_in">Sign in</a> instead.
+  Or, <a style="color:cornflowerblue;"href="/user_sign_in">Sign in</a> instead.
 </p>

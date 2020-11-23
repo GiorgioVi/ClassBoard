@@ -63,4 +63,8 @@ class SolutionsController < ApplicationController
 
     redirect_to("/solutions", { :notice => "Solution deleted successfully."} )
   end
+
+  def show_user_solutions
+    render({ :template => "solutions/show_user_solutions.html.erb" })
+  end
 end

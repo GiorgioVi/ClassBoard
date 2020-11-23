@@ -59,4 +59,10 @@ class QuestionsController < ApplicationController
 
     redirect_to("/questions", { :notice => "Question deleted successfully."} )
   end
+
+  def show_user_questions
+    
+    render({ :template => "questions/user_questions.html.erb" })
+
+  end
 end

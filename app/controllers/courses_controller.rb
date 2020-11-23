@@ -24,7 +24,9 @@ class CoursesController < ApplicationController
 
     if the_course.valid?
       the_course.save
-      redirect_to("/courses", { :notice => "Course created successfully." })
+      #this should eventually reroute to the course page
+      
+      redirect_to("/home_page", { :notice => "Course created successfully." })
     else
       redirect_to("/courses", { :notice => "Course failed to create successfully." })
     end

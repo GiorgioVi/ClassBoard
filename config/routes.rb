@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  # THE ROUTES THAT I CREATE FOR THE PROJCET ########################
+
+  get("/home_page", { :controller => "user_authentication", :action => "home_index" })
+
+  get("/questions", { :controller => "questions", :action => "show_user_questions"})
+
+  get("/solutions", { :controller => "solutions", :action => "show_user_solutions"})
+
+  ################## 
 
 
   # Routes for the User account:
@@ -20,9 +29,7 @@ Rails.application.routes.draw do
   # DELETE RECORD
   get("/cancel_user_account", { :controller => "user_authentication", :action => "destroy" })
 
-  # USER HOME PAGE WHERE THEY CAN SEE CAN EITHER EDIT THEIR PSEUDO NAME OR VIEW THEIR QUESTIONS OR SOLUTIONS
 
-  get("/home_page", { :controller => "user_authentication", :action => "home_index" })
 
 
 
