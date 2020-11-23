@@ -29,7 +29,7 @@ class SolutionsController < ApplicationController
 
     if the_solution.valid?
       the_solution.save
-      redirect_to("/solutions", { :notice => "Solution created successfully." })
+      redirect_to("/questions/"+the_solution.question_id.to_s, { :notice => "Solution created successfully." })
     else
       redirect_to("/solutions", { :notice => "Solution failed to create successfully." })
     end

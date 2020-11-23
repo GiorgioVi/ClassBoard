@@ -15,4 +15,7 @@
 #
 class Solution < ApplicationRecord
   belongs_to(:question)
+
+  mount_uploader :image_link, ImageLinkUploader
+
 end

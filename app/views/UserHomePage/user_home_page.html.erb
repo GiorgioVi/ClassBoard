@@ -46,7 +46,7 @@
           <th>Course Name</th>
           <th>Explore More</th>
         </tr>
-          <% Course.all.order(:course_code).each do |a_course|%>
+          <% Course.all.order(:course_name).each do |a_course|%>
           <tr>
           <th> 
               <%=a_course.course_code%>

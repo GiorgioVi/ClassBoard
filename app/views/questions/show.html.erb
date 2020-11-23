@@ -1,74 +1,29 @@
-<div>
-  <div>
-    <h1>
-      Question #<%= @the_question.id %> details
-    </h1>
+<h2> Question for <%= Course.where(:id => @the_question.course_id).at(0).course_name %> </h2>
 
-    <div>
+
       <div>
-        <a href="/questions">
+        <a href="/courses/<%=Course.where(:id => @the_question.course_id).at(0).id %>" >
           Go back
         </a>
       </div>
 
-      <div>
-        <a href="/delete_question/<%= @the_question.id %>">
-          Delete question
-        </a>
-      </div>
-    </div>
+<div>
+  <table border="1" style="width:70%" > 
+  <tr>
+          <th>
+          <%=@the_question.description%>
+        </th>
 
-    <dl>
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @the_question.description %>
-      </dd>
+        <th>
+        <img style="max-width: 500px; max-height: 900px" src="<%=@the_question.image_file%>" class="img-responsive">
+        </th>
 
-      <dt>
-        Image link
-      </dt>
-      <dd>
-        <%= @the_question.image_link %>
-      </dd>
+        <th>
+          <%=time_ago_in_words(@the_question.created_at)%>
 
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @the_question.user_id %>
-      </dd>
-
-      <dt>
-        Image file
-      </dt>
-      <dd>
-        <%= @the_question.image_file %>
-      </dd>
-
-      <dt>
-        Course
-      </dt>
-      <dd>
-        <%= @the_question.course_id %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_question.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_question.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
+        </th>
+    </tr>
+  </table>
 </div>
 
 <hr>
@@ -91,10 +46,9 @@
 
       <div>
         <label for="image_link_box">
-          Image link
         </label>
 
-        <input type="text" id="image_link_box" name="query_image_link" value="<%= @the_question.image_link %>">
+        <input type="hidden" id="image_link_box" name="query_image_link" value="<%= @the_question.image_link %>">
       </div>
 
       <div>
@@ -110,7 +64,7 @@
           Image file
         </label>
 
-        <input type="text" id="image_file_box" name="query_image_file" value="<%= @the_question.image_file %>">
+        <input type="file" id="image_file_box" name="query_image_file" value="<%= @the_question.image_file %>">
       </div>
 
       <div>
@@ -127,5 +81,126 @@
     </form>
   </div>
 </div>
+<hr>
+
+<div>
+    <h2>
+      Add a new solution
+    </h2>
+
+    <form action="/insert_solution" method="post" enctype="multipart/form-data" >
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="image_link_box">
+        Image file
+        </label>
+        <input type="file" id="image_link_box" name="query_image_link" >
+      </div>
+
+      <div>
+        <label for="user_id_box">
+        </label>
+        <input type="hidden" id="user_id_box" name="query_user_id" value = "<%=@current_user.id%>">
+      </div>
+
+      <div>
+        <label for="image_file_box">
+        </label>
+        <input type="hidden" id="image_file_box" name="query_image_file" value="you">
+      </div>
+
+      <div>
+        <label for="question_id_box">
+        </label>
+        <input type="hidden" id="question_id_box" name="query_question_id" value ="<%=@the_question.id%>">
+      </div>
+
+      <div>
+        <label for="vote_count_box">
+        </label>
+
+        <input type="hidden" id="vote_count_box" name="query_vote_count" value = "0">
+      </div>
+
+      <div>
+        <label for="course_id_box">
+        </label>
+        <input type="hidden" id="course_id_box" name="query_course_id" value = "<%=Course.where(:id => @the_question.course_id).at(0).id %>">
+      </div>
+
+      <button>
+        Create solution
+      </button>
+    </form>
+  </div>
 
 <hr>
+
+<h3>Solutions!</h3>
+
+<table border="1" style="width:90%">
+
+<tr>
+<th>
+Rating
+</th>
+<th>
+Description
+</th>
+<th>
+Image
+</th>
+<th>
+Date Posted
+</th>
+<th>
+Posted By:
+</th>
+
+<th>
+Up/Down Vote
+</th>
+
+</tr>
+
+<%Solution.where(:question_id => @the_question.id).order({:created_at => :desc }).each do |a_solution|%>
+        <tr>
+        <th>
+        In progress
+        </th>
+        <th>
+          <%=a_solution.description%>
+        </th>
+
+        <th>
+         <img style="max-width: 500px; max-height: 900px" src="<%=a_solution.image_link%>" class="img-responsive">
+        </th>
+
+        <th>
+          <%=time_ago_in_words(a_solution.created_at)%>
+
+        </th>
+
+        <th>
+        <%=User.where(:id => a_solution.user_id).first.pseudo_name%>
+
+        </th>
+
+        <th>
+
+        <button> UpVote</button>
+        <button> DownVote</button>
+        </th>
+
+      </tr>
+      <%end%>
+
+</table>
+
