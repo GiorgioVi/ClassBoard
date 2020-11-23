@@ -1,86 +1,88 @@
 <div>
   <div>
     <h1>
-      Course #<%= @the_course.id %> details
+      <%= @the_course.course_name.capitalize %> Questions
     </h1>
 
-    <div>
-      <div>
-        <a href="/courses">
-          Go back
-        </a>
-      </div>
 
-      <div>
-        <a href="/delete_course/<%= @the_course.id %>">
-          Delete course
-        </a>
-      </div>
-    </div>
 
     <dl>
-      <dt>
-        Course name
-      </dt>
-      <dd>
-        <%= @the_course.course_name %>
-      </dd>
-
       <dt>
         Course code
       </dt>
       <dd>
         <%= @the_course.course_code %>
       </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_course.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_course.updated_at) %> ago
-      </dd>
     </dl>
   </div>
-</div>
 
 <hr>
+<h4> Upload a Question </h4>
 
-
-<div>
-  <div>
-    <h2>
-      Edit course
-    </h2>
-
-    <form action="/modify_course/<%= @the_course.id %>"  method="post" >
+<form action="/insert_question" method="post">
       <div>
-        <label for="course_name_box">
-          Course name
+        <label for="question_description_box">
+          Description
         </label>
 
-        <input type="text" id="course_name_box" name="query_course_name" value="<%= @the_course.course_name %>">
+        <input type="text" id="question_description_box" name="query_description">
       </div>
 
       <div>
-        <label for="course_code_box">
-          Course code
+        <label for="question_image_box">
+          Image
         </label>
 
-        <input type="text" id="course_code_box" name="query_course_code" value="<%= @the_course.course_code %>">
-      </div>
+        <input type="text" id="question_image_box" name="query_image_link">
 
+
+        <label for="course_id_box"> 
+        <input type="hidden" id="course_id_box" name="query_course_id" value="<%=@the_course.id%>">
+
+        <label for="user_id_box"> 
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%=@current_user.id%>">
+
+        <label for="user_image_file_box"> 
+        <input type="hidden" id="user_image_file_box" name="query_image_file" value="BlankForNow">
+
+      </div>
+<br>
       <button>
-        Update course
+        Create Question
       </button>
-    </form>
-  </div>
-</div>
+  </form>
 
 <hr>
+
+  <div>
+  <p> Previously Asked Questions </p>
+    <table border="1">
+      <tr>
+        <th>
+          Description
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Date Posted
+        </th>
+
+        <th>
+          Show Solution
+        </th>
+      </tr>
+    </table>
+  </div>
+
+
+
+<hr>
+
+          <div>
+        <a href="/home_page">
+          Go back
+        </a>
+      </div>

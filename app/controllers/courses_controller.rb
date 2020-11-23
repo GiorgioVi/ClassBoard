@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    the_id = params.fetch("path_id")
+    the_id = params.fetch("query_course_id")
 
     matching_courses = Course.where({ :id => the_id })
 
@@ -25,7 +25,7 @@ class CoursesController < ApplicationController
     if the_course.valid?
       the_course.save
       #this should eventually reroute to the course page
-      
+
       redirect_to("/home_page", { :notice => "Course created successfully." })
     else
       redirect_to("/courses", { :notice => "Course failed to create successfully." })
