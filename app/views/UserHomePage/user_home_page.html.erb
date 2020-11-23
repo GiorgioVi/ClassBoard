@@ -1,0 +1,35 @@
+  <ul>
+    <% if @current_user == nil %>
+
+    <p style="color: red"> 
+      <%= notice%>
+    </p>
+
+    <li> <a href="/user_sign_in"> Sign in </a>
+    </li>
+    <li> <a href="/user_sign_up"> Sign Up </a>
+    </li>
+    <%#sign in, sign up%>
+    <%else%>
+
+        
+    <p style="color: green"> 
+      <%= notice%>
+    </p>
+
+    <li> <a href="/edit_user_profile"> Edit <%=@current_user.pseudo_name%> </a>
+    </li>
+    <li> <a href="/user_sign_out"> Sign out </a>
+    </li>
+
+    
+        <%end%>  
+  </ul> 
+    
+    
+    
+    
+
+
+This is a test 
+

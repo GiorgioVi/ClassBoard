@@ -1,0 +1,182 @@
+<div>
+  <div>
+    <h1>
+      List of all solutions
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new solution
+    </h2>
+
+    <form action="/insert_solution" method="post">
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="image_link_box">
+          Image link
+        </label>
+
+        <input type="text" id="image_link_box" name="query_image_link">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="image_file_box">
+          Image file
+        </label>
+
+        <input type="text" id="image_file_box" name="query_image_file">
+      </div>
+
+      <div>
+        <label for="question_id_box">
+          Question
+        </label>
+
+        <input type="text" id="question_id_box" name="query_question_id">
+      </div>
+
+      <div>
+        <label for="vote_count_box">
+          Vote count
+        </label>
+
+        <input type="text" id="vote_count_box" name="query_vote_count">
+      </div>
+
+      <div>
+        <label for="course_id_box">
+          Course
+        </label>
+
+        <input type="text" id="course_id_box" name="query_course_id">
+      </div>
+
+      <button>
+        Create solution
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Image link
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Image file
+        </th>
+
+        <th>
+          Question
+        </th>
+
+        <th>
+          Vote count
+        </th>
+
+        <th>
+          Course
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_solutions.each do |a_solution| %>
+      <tr>
+        <td>
+          <%= a_solution.id %>
+        </td>
+
+        <td>
+          <%= a_solution.description %>
+        </td>
+
+        <td>
+          <%= a_solution.image_link %>
+        </td>
+
+        <td>
+          <%= a_solution.user_id %>
+        </td>
+
+        <td>
+          <%= a_solution.image_file %>
+        </td>
+
+        <td>
+          <%= a_solution.question_id %>
+        </td>
+
+        <td>
+          <%= a_solution.vote_count %>
+        </td>
+
+        <td>
+          <%= a_solution.course_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_solution.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_solution.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/solutions/<%= a_solution.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

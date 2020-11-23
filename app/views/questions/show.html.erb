@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Question #<%= @the_question.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/questions">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_question/<%= @the_question.id %>">
+          Delete question
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_question.description %>
+      </dd>
+
+      <dt>
+        Image link
+      </dt>
+      <dd>
+        <%= @the_question.image_link %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_question.user_id %>
+      </dd>
+
+      <dt>
+        Image file
+      </dt>
+      <dd>
+        <%= @the_question.image_file %>
+      </dd>
+
+      <dt>
+        Course
+      </dt>
+      <dd>
+        <%= @the_question.course_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_question.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_question.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit question
+    </h2>
+
+    <form action="/modify_question/<%= @the_question.id %>"  method="post" >
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_question.description %>">
+      </div>
+
+      <div>
+        <label for="image_link_box">
+          Image link
+        </label>
+
+        <input type="text" id="image_link_box" name="query_image_link" value="<%= @the_question.image_link %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_question.user_id %>">
+      </div>
+
+      <div>
+        <label for="image_file_box">
+          Image file
+        </label>
+
+        <input type="text" id="image_file_box" name="query_image_file" value="<%= @the_question.image_file %>">
+      </div>
+
+      <div>
+        <label for="course_id_box">
+          Course
+        </label>
+
+        <input type="text" id="course_id_box" name="query_course_id" value="<%= @the_question.course_id %>">
+      </div>
+
+      <button>
+        Update question
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all courses
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new course
+    </h2>
+
+    <form action="/insert_course" method="post">
+      <div>
+        <label for="course_name_box">
+          Course name
+        </label>
+
+        <input type="text" id="course_name_box" name="query_course_name">
+      </div>
+
+      <div>
+        <label for="course_code_box">
+          Course code
+        </label>
+
+        <input type="text" id="course_code_box" name="query_course_code">
+      </div>
+
+      <button>
+        Create course
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Course name
+        </th>
+
+        <th>
+          Course code
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_courses.each do |a_course| %>
+      <tr>
+        <td>
+          <%= a_course.id %>
+        </td>
+
+        <td>
+          <%= a_course.course_name %>
+        </td>
+
+        <td>
+          <%= a_course.course_code %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_course.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_course.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/courses/<%= a_course.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
