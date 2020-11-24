@@ -24,6 +24,10 @@ class RatingsController < ApplicationController
     the_rating.user_id = params.fetch("query_user_id")
     the_rating.solution_poster_id = params.fetch("query_solution_poster_id") 
 
+    solutionAdjustment = Solution.where(:id => the_rating.solution_id).first
+    solutionAdjustment.vote_count+=1
+    solutionAdjustment.save
+
     if the_rating.valid?
       the_rating.save
       redirect_to("/home_page", { :notice => "Thanks for voting. Search for new questions!" })

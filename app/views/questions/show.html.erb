@@ -19,7 +19,7 @@
         </th>
 
         <th>
-          <%=time_ago_in_words(@the_question.created_at)%>
+          <%=time_ago_in_words(@the_question.created_at)%> ago 
 
         </th>
     </tr>
@@ -169,11 +169,11 @@ Up Vote
 
 </tr>
 
-<%Solution.where(:question_id => @the_question.id).order({:created_at => :desc }).each do |a_solution|%>
+<%Solution.where(:question_id => @the_question.id).order({:vote_count => :desc }).each do |a_solution|%>
         <tr>
         <th>
 
-        <%= Rating.where(:solution_id => a_solution.id).length%>
+        <%= a_solution.vote_count%>
 
 
         </th>
@@ -186,7 +186,7 @@ Up Vote
         </th>
 
         <th>
-          <%=time_ago_in_words(a_solution.created_at)%>
+          <%=time_ago_in_words(a_solution.created_at)%> ago 
 
         </th>
 
