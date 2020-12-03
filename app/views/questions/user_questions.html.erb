@@ -1,4 +1,11 @@
-Questions asked by <%= @current_user.pseudo_name%>
+<center>
+
+<%if Question.where(:user_id => @current_user.id).first == nil %>
+
+<div> <h2><%= @current_user.pseudo_name%>, you havent asked any questions yet! </h2><div>
+
+<%else%>
+<h2>Questions asked by <%= @current_user.pseudo_name%></h2>
 
 <table border="1">
 <tr>
@@ -18,7 +25,7 @@ Questions asked by <%= @current_user.pseudo_name%>
 <tr>
   <th> <%=Course.where(:id => a_question.course_id).first.course_name%> </th>
   <th> <%=a_question.description%></th>
-  <th> <%=a_question.created_at%></th>
+  <th> <%=time_ago_in_words(a_question.created_at)%></th>
   <th> <a href="/questions/<%=a_question.id%>"> See the Question </a></th>
 </tr>
 
@@ -26,6 +33,10 @@ Questions asked by <%= @current_user.pseudo_name%>
 
 </table>
 
+<%end%>
 
-<br>
+<hr>
 <a href="/home_page"> Go Back to home_page </a>
+<hr>
+
+</center>

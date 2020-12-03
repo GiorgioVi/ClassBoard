@@ -1,7 +1,11 @@
-<h2><%=@current_user.pseudo_name%>'s solutions!</h2>
-<hr>
-<a href="/home_page"> Go Back to home_page </a>
-<hr>
+<center>
+
+
+<%if Solution.where(:user_id => @current_user.id).first == nil %>
+
+<div> <h2><%= @current_user.pseudo_name%>, you havent posted any solutions yet! </h2><div>
+
+<%else%>
 
 <table border="1">
 <tr>
@@ -30,3 +34,9 @@
 <%end%>
 
 </table>
+
+<%end%>
+
+<hr>
+<a href="/home_page"> Go Back to home_page </a>
+<hr>

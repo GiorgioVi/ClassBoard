@@ -1,6 +1,5 @@
   
-  
-  <ul>
+<center>
     <% if @current_user == nil %>
 
     <p style="color: red"> 
@@ -12,24 +11,22 @@
     <li> <a href="/user_sign_up"> Sign Up </a>
     </li>
     <%#sign in, sign up%>
-    </ul>
     <%else%>
     <p style="color: green"> 
       <%= notice%>
     </p>
 
-    <li> <a href="/edit_user_profile"> Edit <%=@current_user.pseudo_name%> </a>
-    </li>
+    <div> <a href="/edit_user_profile"> Edit <%=@current_user.pseudo_name%> </a>
+    </div>
 
-    <li> <a href="/questions"> View <%=@current_user.pseudo_name%> Questions </a>
-    </li>
+    <div> <a href="/questions"> View <%=@current_user.pseudo_name%> Questions </a>
+    </div>
 
-    <li> <a href="/solutions"> View <%=@current_user.pseudo_name%> Solutions </a>
-    </li>
+    <div> <a href="/solutions"> View <%=@current_user.pseudo_name%> Solutions </a>
+    </div>
 
-    <li> <a href="/user_sign_out"> Sign out </a>
-    </li>
-    </ul> 
+    <div> <a href="/user_sign_out"> Sign out </a>
+    </div>
     <%end%>
     <h3> Choose a Course </h3>
 
@@ -86,6 +83,7 @@
     
   <% end%>
 
+</center>
 
       
 
